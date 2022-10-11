@@ -3,12 +3,7 @@ package br.com.api.rest.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import br.com.api.rest.model.Produto;
 import br.com.api.rest.repository.ProdutoRepository;
@@ -34,5 +29,12 @@ public class ProdutoController {
 	public Produto cadastrar(@RequestBody Produto produto) {
 		return produtoRepository.save(produto);
 	}
-	
+	@DeleteMapping("/produto/{id}")
+	public void deletarPorId (@PathVariable(value = "id") long id){
+		 produtoRepository.deleteById(id);
+	}
+	@PutMapping("/produto")
+	public Produto atualizaProduto(@RequestBody Produto produto){
+		return produtoRepository.save(produto);
+	}
 }
